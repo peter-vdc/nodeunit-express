@@ -3,9 +3,9 @@
   "name": "nodeunit-express",
   "description": "A Mock Request object to use when node-unit-testing an express app",
   "version": "0.0.1",
-  "homepage": "https://github.com/rubymaverick/express-mock-request",
+  "homepage": "https://github.com/peter-vdc/nodeunit-express",
   "repository": {
-    "url": "https://github.com/rubymaverick/express-mock-request"
+    "url": "https://github.com/peter-vdc/nodeunit-express"
   },
   "dependencies": {
     "express": "3.x"

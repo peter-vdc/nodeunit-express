@@ -1,4 +1,4 @@
-### express-mock-request
+### nodeunit-express
 
 nodeunit-express is a utility function to make it easy to write tests for Node.JS [Express](https://github.com/visionmedia/express) applications.
 It is based on the https://github.com/rubymaverick/express-mock-request project, which I could not get to work properly.

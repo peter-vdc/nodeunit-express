@@ -88,6 +88,12 @@ Request.prototype.end = function(fn){
 				res.body = buf;
 				fn(res);
 			});
+			res.on('error', function(err){
+				console.error('response error: %j', err);
+			});
+		});
+		req.on('error', function(err){
+			console.error('request error: %j', err);
 		});
 
 		req.end();
@@ -103,7 +109,7 @@ Request.prototype.end = function(fn){
 
 Request.prototype.close = function(callback){
 	console.log('closing Express server...');
-	if (null != this.server) {
+	if (null !== this.server) {
 		this.server.close(function(cb) {
 			console.log('Express server closed!');
 			if (callback) callback();

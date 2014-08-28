@@ -10,20 +10,21 @@ var EventEmitter = require('events').EventEmitter
 
 module.exports = request;
 
-function request(app) {
-	return new Request(app);
+function request(app, verbose) {
+	return new Request(app, verbose || false);
 }
 
-function Request(app) {
+function Request(app, verbose) {
 	var self = this;
 	this.data = [];
 	this.header = {};
 	this.app = app;
+	this.verbose = verbose;
 	if (!this.server) {
-		console.log('starting mock-server...');
+		if(this.verbose) {console.log('starting mock-server...');}
 		this.server = http.Server(app);
 		this.server.listen(0, function(){
-			console.log('mock-server started!');
+			if(self.verbose) {console.log('mock-server started!');}
 			self.addr = self.server.address();
 			if (self.addr.address = '0.0.0.0')
 				self.addr.address = '127.0.0.1';
@@ -108,10 +109,11 @@ Request.prototype.end = function(fn){
 };
 
 Request.prototype.close = function(callback){
-	console.log('closing Express server...');
+	var self = this;
+	if(this.verbose) {console.log('closing Express server...');}
 	if (null !== this.server) {
 		this.server.close(function(cb) {
-			console.log('Express server closed!');
+			if(self.verbose) {console.log('Express server closed!');}
 			if (callback) callback();
 		});
 	} else {

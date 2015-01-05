@@ -2,7 +2,7 @@
   "author": "Peter Vandercappellen",
   "name": "nodeunit-express",
   "description": "A Mock Request object to use when node-unit-testing an express app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/peter-vdc/nodeunit-express",
   "repository": {
     "url": "https://github.com/peter-vdc/nodeunit-express"

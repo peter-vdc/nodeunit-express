@@ -1,3 +1,19 @@
-node_modules/
-.project
+# ide and os files
 /.idea/
+**/*.DS_Store
+**/*.kate-swp
+**/*.desktop
+**/*.thumb
+**/*.sublime*
+**/.~*
+**/~*
+**/*~
+.project
+
+
+# package managers
+/npm-debug.log
+/lib-cov
+
+# compile files
+/node_modules

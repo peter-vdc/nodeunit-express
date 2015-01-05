@@ -1,6 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
+var nodeUnitExpress = require('./index');
 
 var defaultOptions = {
 	method: 'get',
@@ -46,7 +47,7 @@ module.exports = function (globalOptions) {
 
 		return function () {
 			var args = _.toArray(arguments);
-			var expressAppTester = nodeunitExpress(app);
+			var expressAppTester = nodeUnitExpress(app);
 
 			_.each(options.headers, function (v, k) {
 				expressAppTester.set(k, v);
@@ -55,13 +56,14 @@ module.exports = function (globalOptions) {
 			if (options.body !== undefined) {
 				if (!_.isString(options.body)) {
 					expressAppTester.set('content-type', 'application/json');
-					expressAppTester.write(JSON.stringify(options.body));
-				} else {
-					expressAppTester.write(options.body);
+					options.body = JSON.stringify(options.body);
 				}
+
+				expressAppTester.write(options.body);
 			}
 
-			expressAppTester[options.method.toLowerCase()](options.uri).expect(function(response) {
+			var method = options.method.toLowerCase();
+			expressAppTester[method](options.uri).expect(function(response) {
 				response = options.prepare(response);
 				options.testers[options.tester](options, response, args);
 				expressAppTester.close();
